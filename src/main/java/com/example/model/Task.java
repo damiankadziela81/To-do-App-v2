@@ -1,18 +1,20 @@
 package com.example.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "tasks")
 class Task {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String description;
     private boolean done;
 
-    int getId() {
+    Task() {
+    }
+
+    public int getId() {
         return id;
     }
 
@@ -20,7 +22,7 @@ class Task {
         this.id = id;
     }
 
-    String getDescription() {
+    public String getDescription() {
         return description;
     }
 
@@ -28,7 +30,7 @@ class Task {
         this.description = description;
     }
 
-    boolean isDone() {
+    public boolean isDone() {
         return done;
     }
 
