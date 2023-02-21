@@ -17,7 +17,8 @@ class TaskController {
     }
 
     //@RequestMapping(method = RequestMethod.GET, path = "/tasks")
-    @GetMapping("/tasks")
+    //use this endpoint when there are no params, otherwise use the ones containing HATEOAS in RestRepository
+    @GetMapping(value = "/tasks", params = {"!sort","!page","!size"})
     ResponseEntity<?> readAllTasks(){
         logger.warn("Exposing all the tasks!");
         return ResponseEntity.ok(repository.findAll());
