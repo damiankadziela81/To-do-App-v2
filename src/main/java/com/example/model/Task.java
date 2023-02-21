@@ -20,7 +20,7 @@ public class Task {
         return id;
     }
 
-    void setId(final int id) {
+    public void setId(final int id) {
         this.id = id;
     }
 
