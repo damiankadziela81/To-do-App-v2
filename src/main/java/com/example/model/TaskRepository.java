@@ -8,7 +8,7 @@ import org.springframework.data.rest.core.annotation.RestResource;
 import java.util.List;
 
 @RepositoryRestResource
-interface TaskRepository extends JpaRepository<Task,Integer> {
+public interface TaskRepository extends JpaRepository<Task,Integer> {
 
     @Override
     @RestResource(exported = false)
@@ -18,7 +18,7 @@ interface TaskRepository extends JpaRepository<Task,Integer> {
     @RestResource(exported = false)
     void delete(Task entity);
 
-    //DSL - Domain Specific Language (usage of Spring Data QueryDSL
+    //DSL - Domain Specific Language (usage of Spring Data QueryDSL)
     @RestResource(path = "done", rel = "done")
     List<Task> findByDone(@Param("state") boolean done);
     //localhost:8080/tasks/search/done?state=true
