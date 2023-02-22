@@ -47,13 +47,13 @@ class TaskController {
     ResponseEntity<Task> getTaskByID(@PathVariable int id) {
         return repository.findById(id)
                 .map(task -> ResponseEntity.ok(task))
-                .orElse(ResponseEntity.notFound().build());
+                .orElseGet(()->ResponseEntity.notFound().build());
     }
 
     @PostMapping("/tasks")
     ResponseEntity<Task> createTask(@RequestBody @Valid Task toCreate){
         Task createdTask = repository.save(toCreate);
-        logger.info("New task created.");
+        logger.info("New task created with id: " + createdTask.getId());
         return ResponseEntity.created(URI.create("/" + createdTask.getId())).body(createdTask);
     }
 }
