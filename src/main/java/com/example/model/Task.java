@@ -36,7 +36,7 @@ public class Task {
         return done;
     }
 
-    void setDone(final boolean done) {
+    public void setDone(final boolean done) {
         this.done = done;
     }
 }
