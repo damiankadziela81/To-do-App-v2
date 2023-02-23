@@ -3,26 +3,19 @@ package com.example.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
-import java.time.LocalDateTime;
-import java.util.Set;
-
 @Entity
-@Table(name = "task_groups")
-public class TaskGroup {
+@Table(name = "project_steps")
+public class ProjectStep {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @NotBlank(message = "Task group's must have a description.")
+    @NotBlank(message = "Project step must have a description.")
     private String description;
-    private boolean done;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "group") //group - field name of TaskGroup object in Task class
-    private Set<Task> tasks;
+    private int daysToDeadline;
     @ManyToOne
     @JoinColumn(name = "project_id")
     private Project project;
-
-    TaskGroup() {
-    }
 
     public int getId() {
         return id;
@@ -40,20 +33,12 @@ public class TaskGroup {
         this.description = description;
     }
 
-    public boolean isDone() {
-        return done;
+    public int getDaysToDeadline() {
+        return daysToDeadline;
     }
 
-    public void setDone(final boolean done) {
-        this.done = done;
-    }
-
-    public Set<Task> getTasks() {
-        return tasks;
-    }
-
-    void setTasks(final Set<Task> tasks) {
-        this.tasks = tasks;
+    void setDaysToDeadline(final int daysToDeadline) {
+        this.daysToDeadline = daysToDeadline;
     }
 
     Project getProject() {
