@@ -34,16 +34,6 @@ class TaskController {
         return ResponseEntity.ok(repository.findAll(page).getContent());
     }
 
-    @PutMapping("/tasks/{id}")
-    ResponseEntity<?> updateTask(@PathVariable int id, @RequestBody @Valid Task toUpdate) {
-        if(!repository.existsById(id)) {
-            return ResponseEntity.notFound().build();
-        }
-        toUpdate.setId(id);
-        repository.save(toUpdate);
-        return ResponseEntity.noContent().build();
-    }
-
     @GetMapping("/tasks/{id}")
     ResponseEntity<Task> getTaskByID(@PathVariable int id) {
         return repository.findById(id)
@@ -56,6 +46,20 @@ class TaskController {
         Task createdTask = repository.save(toCreate);
         logger.info("New task created with id: " + createdTask.getId());
         return ResponseEntity.created(URI.create("/" + createdTask.getId())).body(createdTask);
+    }
+
+    @Transactional
+    @PutMapping("/tasks/{id}")
+    ResponseEntity<?> updateTask(@PathVariable int id, @RequestBody @Valid Task toUpdate) {
+        if(!repository.existsById(id)) {
+            return ResponseEntity.notFound().build();
+        }
+        repository.findById(id)
+                .ifPresent(task -> {
+                    task.updateFrom(toUpdate);
+//                    repository.save(task);   //when using @Transactional you don't need this line
+                });
+        return ResponseEntity.noContent().build();
     }
 
     @Transactional
