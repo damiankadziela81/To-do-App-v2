@@ -16,5 +16,5 @@ interface SqlTaskRepository extends TaskRepository, JpaRepository<Task,Integer> 
     boolean existsById(@Param("id") Integer id);
 
     @Override
-    boolean existByDoneIsFalseAndGroup_Id(Integer groupId);
+    boolean existsByDoneIsFalseAndGroup_Id(Integer groupId);
 }
