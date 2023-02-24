@@ -24,6 +24,11 @@ public class TaskGroup {
     TaskGroup() {
     }
 
+    public TaskGroup(final String description, final Set<Task> tasks) {
+        this.description = description;
+        this.tasks = tasks;
+    }
+
     public int getId() {
         return id;
     }
