@@ -24,6 +24,11 @@ public class Task {
     Task() {
     }
 
+    public Task(final String description, final LocalDateTime deadline) {
+        this.description = description;
+        this.deadline = deadline;
+    }
+
     public int getId() {
         return id;
     }
