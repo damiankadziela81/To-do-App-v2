@@ -36,11 +36,13 @@ public class ProjectService {
         }
         TaskGroup result = repository.findById(projectId)
                 .map(project -> {
-                    return new TaskGroup(project.getDescription(),
+                    var targetGroup = new TaskGroup(project.getDescription(),
                             project.getSteps().stream()
                                     .map(step -> new Task(step.getDescription(),
                                             deadline.plusDays(step.getDaysToDeadline())))
                                     .collect(Collectors.toSet()));
+                    targetGroup.setProject(project);
+                    return taskGroupRepository.save(targetGroup);
                 }).orElseThrow(()-> new IllegalArgumentException("Project with given id not found"));
         return new GroupReadModel(result);
     }
