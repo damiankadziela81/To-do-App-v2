@@ -1,19 +1,14 @@
 package com.example.logic;
 
-import com.example.TaskConfiguration;
 import com.example.model.TaskGroup;
 import com.example.model.TaskGroupRepository;
 import com.example.model.TaskRepository;
 import com.example.model.projection.GroupReadModel;
 import com.example.model.projection.GroupWriteModel;
-import org.springframework.stereotype.Service;
-import org.springframework.web.context.annotation.RequestScope;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Service
-@RequestScope
 public class TaskGroupService {
     private TaskGroupRepository repository;
     private TaskRepository taskRepository;
