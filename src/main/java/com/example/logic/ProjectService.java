@@ -3,13 +3,11 @@ package com.example.logic;
 import com.example.TaskConfiguration;
 import com.example.model.*;
 import com.example.model.projection.GroupReadModel;
-import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Service
 public class ProjectService {
     private ProjectRepository repository;
     private TaskGroupRepository taskGroupRepository;
