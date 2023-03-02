@@ -7,10 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.ResponseEntity;
 
 import java.time.LocalDateTime;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class TaskControllerE2ETest {
@@ -35,8 +38,34 @@ class TaskControllerE2ETest {
 
         //then
         assertThat(result).hasSize(initial + 2);
-
     }
 
+    @Test
+    void httpGet_returnsTaskById() {
+        //given
+        String description = "test task";
+        int id = taskRepository.save(new Task(description, LocalDateTime.now())).getId();
+
+        //when
+        Task result = testRestTemplate.getForObject("http://localhost:" + port + "/tasks/" + id, Task.class);
+
+        //then
+        assertThat(result).hasFieldOrPropertyWithValue("id", id);
+        assertThat(result).hasFieldOrPropertyWithValue("description", description);
+    }
+
+    @Test
+    void httpPost_createsNewTask() {
+        //given
+        Task task = new Task("test task", LocalDateTime.now());
+        HttpEntity<Task> request = new HttpEntity<>(task);
+
+        //when
+        ResponseEntity<Task> result = testRestTemplate.postForEntity("http://localhost:" + port + "/tasks", request, Task.class);
+
+        //then
+        assertNotEquals(result.getBody().getId(), 0);
+        assertEquals(task.getDescription(), result.getBody().getDescription());
+    }
 
 }
