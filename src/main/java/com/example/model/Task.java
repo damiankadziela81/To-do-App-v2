@@ -25,8 +25,15 @@ public class Task {
     }
 
     public Task(final String description, final LocalDateTime deadline) {
+        this(description, deadline, null);
+    }
+
+    public Task(final String description, final LocalDateTime deadline, TaskGroup taskGroup) {
         this.description = description;
         this.deadline = deadline;
+        if(taskGroup != null) {
+            this.group = taskGroup;
+        }
     }
 
     public int getId() {

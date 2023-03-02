@@ -1,6 +1,7 @@
 package com.example.model.projection;
 
 import com.example.model.Task;
+import com.example.model.TaskGroup;
 
 import java.time.LocalDateTime;
 
@@ -24,7 +25,7 @@ public class TaskWriteModel {
         this.deadline = deadline;
     }
 
-    public Task toTask(){
-        return new Task(description, deadline);
+    public Task toTask(final TaskGroup taskGroup){
+        return new Task(description, deadline, taskGroup);
     }
 }
