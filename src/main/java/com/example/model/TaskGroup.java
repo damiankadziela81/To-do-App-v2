@@ -3,7 +3,6 @@ package com.example.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
-import java.time.LocalDateTime;
 import java.util.Set;
 
 @Entity
@@ -21,7 +20,7 @@ public class TaskGroup {
     @JoinColumn(name = "project_id")
     private Project project;
 
-    TaskGroup() {
+    public TaskGroup() {
     }
 
     public TaskGroup(final String description, final Set<Task> tasks) {
@@ -41,7 +40,7 @@ public class TaskGroup {
         return description;
     }
 
-    void setDescription(final String description) {
+    public void setDescription(final String description) {
         this.description = description;
     }
 
@@ -57,7 +56,7 @@ public class TaskGroup {
         return tasks;
     }
 
-    void setTasks(final Set<Task> tasks) {
+    public void setTasks(final Set<Task> tasks) {
         this.tasks = tasks;
     }
 
