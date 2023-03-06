@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -80,5 +81,27 @@ class TaskController {
                 .ifPresent(task -> task.setDone(!task.isDone()));
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/search/undefined")
+    ResponseEntity<List<Task>> readUndefinedTasks() {
+        return ResponseEntity.ok(
+                repository.findByDeadlineIsNull()
+        );
+    }
+
+    @GetMapping("/search/overdue")
+    ResponseEntity<List<Task>> readOverdueTasks() {
+        return ResponseEntity.ok(
+                repository.findByDeadlineBefore(LocalDateTime.now())
+        );
+    }
+
+    @GetMapping("/search/pending")
+    ResponseEntity<List<Task>> readPendingTasks() {
+        return ResponseEntity.ok(
+                repository.findByDeadlineAfter(LocalDateTime.now())
+        );
+    }
+
 
 }
