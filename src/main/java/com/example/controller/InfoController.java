@@ -4,10 +4,12 @@ import com.example.TaskConfiguration;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
+@RequestMapping("/info")
 class InfoController {
 
     private DataSourceProperties dataSource;
@@ -18,12 +20,12 @@ class InfoController {
         this.myProperty = myProperty;
     }
 
-    @GetMapping("/info/url")
+    @GetMapping("/url")
     String url(){
         return dataSource.getUrl();
     }
 
-    @GetMapping("/info/prop")
+    @GetMapping("/prop")
     boolean myProperty(){
         return myProperty.getTemplate().isAllowMultipleTasks();
     }
