@@ -4,17 +4,18 @@ import com.example.model.Task;
 import com.example.model.TaskGroup;
 
 import java.time.LocalDateTime;
-import java.util.Comparator;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 public class GroupReadModel {
+    private int id;
     private String description;
     //deadline from the last task in group
     private LocalDateTime deadline;
     private Set<TaskReadModel> tasks;
 
     public GroupReadModel(TaskGroup source) {
+        id = source.getId();
         description = source.getDescription();
         source.getTasks().stream()
                 .map(Task::getDeadline)
@@ -23,6 +24,14 @@ public class GroupReadModel {
         tasks = source.getTasks().stream()
                 .map(TaskReadModel::new)
                 .collect(Collectors.toSet());
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(final int id) {
+        this.id = id;
     }
 
     public String getDescription() {
