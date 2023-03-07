@@ -40,6 +40,7 @@ class ProjectController {
         }
         service.create(current);
         model.addAttribute("project", new ProjectWriteModel());
+        model.addAttribute("projects", getProjects());
         model.addAttribute("message", "Projekt został dodany");
         return "projects";
     }
