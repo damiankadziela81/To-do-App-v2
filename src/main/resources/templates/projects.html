@@ -21,10 +21,17 @@
                     <input type="text" th:field="*{steps[__${stepStat.index}__].description}"/>
                 </label>
                 <label>Dni do końca projektu
-                    <input type="text" th:field="*{steps[__${stepStat.index}__].daysToDeadline}"/>
+                    <input type="number" th:field="*{steps[__${stepStat.index}__].daysToDeadline}"/>
                 </label>
             </fieldset>
+            <div>
+                <button type="submit" name="addStep">+</button>
+            </div>
         </fieldset>
+        <p>
+            <button type="submit">Dodaj</button>
+            <button type="reset">Wyczyść</button>
+        </p>
     </form>
 
 </main>
