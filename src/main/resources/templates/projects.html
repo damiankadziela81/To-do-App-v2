@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App: projects</title>
+    <link rel="stylesheet" href="https://igoradamenko.github.io/awsm.css/css/awsm.min.css">
+</head>
+<body>
+<main>
+    <!--/*thymesVar id="project" type="com.example.model.projection.ProjectWriteModel"*/-->
+    <form action="#" method="post" th:action="@{/projects}" th:object="${project}">
+        <fieldset>
+            <legend>Nowy projekt</legend>
+            <label>Opis
+                <input type="text" th:field="${project.description}"/>
+            </label>
+            <fieldset>
+                <legend>Krok 1</legend>
+                <label>Opis
+                    <input type="text" th:field="${project.steps[0].description}"/>
+                </label>
+                <label>Dni do końca projektu
+                    <input type="text" th:field="${project.steps[0].daysToDeadline}"/>
+                </label>
+            </fieldset>
+        </fieldset>
+    </form>
+
+</main>
+</body>
+</html>
