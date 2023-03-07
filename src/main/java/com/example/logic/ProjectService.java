@@ -4,6 +4,7 @@ import com.example.TaskConfiguration;
 import com.example.model.*;
 import com.example.model.projection.GroupReadModel;
 import com.example.model.projection.GroupWriteModel;
+import com.example.model.projection.ProjectWriteModel;
 import com.example.model.projection.TaskWriteModel;
 
 import java.time.LocalDateTime;
@@ -32,8 +33,8 @@ public class ProjectService {
         return repository.findAll();
     }
 
-    public Project create(Project source) {
-        return repository.save(source);
+    public Project create(ProjectWriteModel source) {
+        return repository.save(source.toProject());
     }
 
     public GroupReadModel createGroup(int projectId, LocalDateTime deadline) {
@@ -54,7 +55,7 @@ public class ProjectService {
                                                 return task;
                                             }
                                     ).collect(Collectors.toSet()));
-                    return taskGroupService.createGroup(targetGroup);
+                    return taskGroupService.createGroup(targetGroup, project);
                 }).orElseThrow(() -> new IllegalArgumentException("Project with given id not found"));
     }
 }
