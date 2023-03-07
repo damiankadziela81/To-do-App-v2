@@ -13,15 +13,15 @@
         <fieldset>
             <legend>Nowy projekt</legend>
             <label>Opis
-                <input type="text" th:field="${project.description}"/>
+                <input type="text" th:field="*{description}"/>
             </label>
-            <fieldset>
-                <legend>Krok 1</legend>
+            <fieldset th:each="step,stepStat : *{steps}">
+                <legend th:text="|Krok ${stepStat.index + 1}|"></legend>
                 <label>Opis
-                    <input type="text" th:field="${project.steps[0].description}"/>
+                    <input type="text" th:field="*{steps[__${stepStat.index}__].description}"/>
                 </label>
                 <label>Dni do końca projektu
-                    <input type="text" th:field="${project.steps[0].daysToDeadline}"/>
+                    <input type="text" th:field="*{steps[__${stepStat.index}__].daysToDeadline}"/>
                 </label>
             </fieldset>
         </fieldset>

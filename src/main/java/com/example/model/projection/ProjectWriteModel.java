@@ -17,6 +17,7 @@ public class ProjectWriteModel {
 
     public ProjectWriteModel() {
         steps.add(new ProjectStep());
+        steps.add(new ProjectStep()); //for display test only
     }
 
     public String getDescription() {
