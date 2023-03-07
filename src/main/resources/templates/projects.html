@@ -9,9 +9,19 @@
        .Bd {
             border: solid 1px black;
             }
+
+       .Bdc\(red\) {
+            border-color: red !important;
+            }
+
+       .C\(red\) {
+            color: red;
+            }
+
        .P\(0\) {
             padding: 0;
             }
+
        .P\(10px\) {
             padding: 10px;
             }
@@ -31,20 +41,20 @@
         </dd>
     </dl>
     <fieldset>
+        <legend>Nowy projekt</legend>
         <!--/*thymesVar id="project" type="com.example.model.projection.ProjectWriteModel"*/-->
         <form action="#" method="post" th:action="@{/projects}" th:object="${project}">
-
-            <legend>Nowy projekt</legend>
+            <p class="C(red)" th:if="${#fields.hasAnyErrors()}" th:errors="*{all}"></p>
             <label>Opis
-                <input type="text" th:field="*{description}"/>
+                <input type="text" th:field="*{description}" th:errorclass="'Bdc(red)'"/>
             </label>
             <fieldset th:each="step,stepStat : *{steps}">
                 <legend th:text="|Krok ${stepStat.index + 1}|"></legend>
                 <label>Opis
-                    <input type="text" th:field="*{steps[__${stepStat.index}__].description}"/>
+                    <input type="text" th:field="*{steps[__${stepStat.index}__].description}" th:errorclass="'Bdc(red)'"/>
                 </label>
                 <label>Dni do końca projektu
-                    <input type="number" th:field="*{steps[__${stepStat.index}__].daysToDeadline}"/>
+                    <input type="number" th:field="*{steps[__${stepStat.index}__].daysToDeadline}" th:errorclass="'Bdc(red)'"/>
                 </label>
             </fieldset>
             <div>
