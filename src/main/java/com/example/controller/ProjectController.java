@@ -1,6 +1,7 @@
 package com.example.controller;
 
 import com.example.logic.ProjectService;
+import com.example.model.Project;
 import com.example.model.ProjectStep;
 import com.example.model.projection.ProjectWriteModel;
 import org.springframework.stereotype.Controller;
@@ -9,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/projects")
@@ -38,4 +41,10 @@ class ProjectController {
         current.getSteps().add(new ProjectStep());
         return "projects";
     }
+
+    @ModelAttribute("projects")
+    List<Project> getProjects() {
+        return service.readAll();
+    }
+
 }

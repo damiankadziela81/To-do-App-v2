@@ -10,6 +10,15 @@
 <main>
     <!--/*thymesVar id="message" type="java.lang.String"*/-->
     <h1 th:if="${message != null}" th:text="${message}"></h1>
+    <!--/*thymesVar id="project" type="java.util.List<com.example.model.Project"*/-->
+    <dl th:each="project : ${projects}">
+        <dt th:text="${project.description}">...</dt>
+        <dd>
+            <ul>
+                <li th:each="step : ${project.steps}" th:text="|${step.description} (${step.daysToDeadline} dni)|"></li>
+            </ul>
+        </dd>
+    </dl>
     <!--/*thymesVar id="project" type="com.example.model.projection.ProjectWriteModel"*/-->
     <form action="#" method="post" th:action="@{/projects}" th:object="${project}">
         <fieldset>
