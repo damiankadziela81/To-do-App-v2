@@ -1,5 +1,6 @@
 package com.example.logic;
 
+import com.example.model.Project;
 import com.example.model.TaskGroup;
 import com.example.model.TaskGroupRepository;
 import com.example.model.TaskRepository;
@@ -19,7 +20,11 @@ public class TaskGroupService {
     }
 
     public GroupReadModel createGroup(GroupWriteModel source) {
-        TaskGroup result = repository.save(source.toGroup());
+        return createGroup(source, null);
+    }
+
+    GroupReadModel createGroup(final GroupWriteModel source, final Project project) {
+        TaskGroup result = repository.save(source.toGroup(project));
         return new GroupReadModel(result);
     }
 
@@ -38,5 +43,4 @@ public class TaskGroupService {
         result.setDone(!result.isDone());
         repository.save(result);
     }
-
 }
