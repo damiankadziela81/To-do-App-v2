@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -29,6 +30,14 @@ class ReportController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    @GetMapping("/donebeforedeadline/{id}")
+    ResponseEntity<TaskDoneBeforeDeadline> readTasksWithDeadline (@PathVariable int id) {
+        return taskRepository.findById(id)
+                .map(task -> new TaskDoneBeforeDeadline(task, eventRepository.findByTaskId(id)))
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
     private static class TaskWithChangesCount {
         public String description;
         public boolean done;
@@ -37,6 +46,22 @@ class ReportController {
             description = task.getDescription();
             done = task.isDone();
             changesCount = events.size();
+        }
+    }
+
+    public static class TaskDoneBeforeDeadline {
+        public String description;
+        public boolean done;
+        public boolean doneBeforeDeadline;
+        public LocalDateTime deadline;
+        public LocalDateTime lastOccurrence;
+        TaskDoneBeforeDeadline(final Task task, final List<PersistedTaskEvent> events) {
+            description = task.getDescription();
+            done = task.isDone();
+            deadline = task.getDeadline();
+            lastOccurrence = events.stream().map(event -> event.occurrence).max(LocalDateTime::compareTo).orElse(null);
+            if(task.getDeadline()==null || !task.isDone()) doneBeforeDeadline = false;
+            else doneBeforeDeadline = lastOccurrence.isBefore(task.getDeadline());
         }
     }
 }
