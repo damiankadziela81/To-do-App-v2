@@ -1,5 +1,6 @@
 package com.example.model;
 
+import com.example.model.event.TaskEvent;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
@@ -56,8 +57,13 @@ public class Task {
         return done;
     }
 
-    public void setDone(final boolean done) {
-        this.done = done;
+//    public void setDone(final boolean done) {
+//        this.done = done;
+//    }
+
+    public TaskEvent toggle() {
+        this.done = !this.done;
+        return TaskEvent.changed(this);
     }
 
     public LocalDateTime getDeadline() {
