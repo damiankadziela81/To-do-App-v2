@@ -2,8 +2,8 @@ package com.example.model.projection;
 
 import com.example.model.Project;
 import com.example.model.TaskGroup;
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotBlank;
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -2,7 +2,7 @@ package com.example.model.projection;
 
 import com.example.model.Task;
 import com.example.model.TaskGroup;
-import jakarta.validation.constraints.NotBlank;
+import javax.validation.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;

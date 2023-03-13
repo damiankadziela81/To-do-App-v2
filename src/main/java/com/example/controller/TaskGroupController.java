@@ -6,7 +6,7 @@ import com.example.model.TaskRepository;
 import com.example.model.projection.GroupReadModel;
 import com.example.model.projection.GroupWriteModel;
 import com.example.model.projection.TaskWriteModel;
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;

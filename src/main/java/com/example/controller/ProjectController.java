@@ -5,7 +5,7 @@ import com.example.model.Project;
 import com.example.model.ProjectStep;
 import com.example.model.projection.ProjectWriteModel;
 import io.micrometer.core.annotation.Timed;
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

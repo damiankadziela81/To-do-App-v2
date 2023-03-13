@@ -1,9 +1,8 @@
 package com.example.model;
 
-import jakarta.persistence.Embeddable;
-import jakarta.persistence.MappedSuperclass;
-import jakarta.persistence.PrePersist;
-import jakarta.persistence.PreUpdate;
+import javax.persistence.Embeddable;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 
 import java.time.LocalDateTime;
 
