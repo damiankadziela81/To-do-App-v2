@@ -2,4 +2,4 @@
 
 Build with Java version 17
 
-Demo App used for practice using Maven, Spring Boot 3, Data, Web, Dependency Injection, AOP, Security (Keycloak), Hibernate, JUnit, Mockito, AssertJ, Actuator
+Demo App used for practice using Maven, Spring Boot 3, Data, Web, Dependency Injection, AOP, Security (Keycloak, still not implemented), Hibernate, JUnit, Mockito, AssertJ, Actuator
