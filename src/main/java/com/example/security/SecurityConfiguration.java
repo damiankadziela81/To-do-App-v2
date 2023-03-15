@@ -17,7 +17,7 @@ import org.springframework.security.web.authentication.session.SessionAuthentica
 class SecurityConfiguration extends KeycloakWebSecurityConfigurerAdapter {
 
     @Bean
-    public KeycloakSpringBootConfigResolver keycloakConfigResolver() {
+    KeycloakSpringBootConfigResolver keycloakConfigResolver() {
         return new KeycloakSpringBootConfigResolver();
     }
 
@@ -43,6 +43,5 @@ class SecurityConfiguration extends KeycloakWebSecurityConfigurerAdapter {
                 .hasRole("USER")
                 .anyRequest()
                 .permitAll();
-
     }
 }
