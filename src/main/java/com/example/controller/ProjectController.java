@@ -43,7 +43,7 @@ class ProjectController {
         model.addAttribute("project", new ProjectWriteModel());
         model.addAttribute("projects", getProjects());
         model.addAttribute("message", "Projekt został dodany");
-        return "projects";
+        return "redirect:/projects";
     }
 
     @PostMapping(params = "addStep")
