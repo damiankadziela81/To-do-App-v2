@@ -80,7 +80,7 @@ class TaskGroupController {
         model.addAttribute("group", new GroupWriteModel());
         model.addAttribute("groups", getGroups());
         model.addAttribute("message", "Grupa została dodana");
-        return "groups";
+        return "redirect:/groups";
     }
 
     @PostMapping(params = "addTask", produces = MediaType.TEXT_HTML_VALUE)
